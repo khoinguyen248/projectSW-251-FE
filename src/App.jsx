@@ -7,7 +7,7 @@ const App = () => {
   const Fetching = async () => {
     try {
       const response = await getAllemloyees();
-      console.log("API Response:", response.data); // Debug để kiểm tra dữ liệu
+      console.log("API Response:", response.data); 
       setMovies(response.data.data); 
     } catch (error) {
       console.error("API Fetch Error:", error);
@@ -41,7 +41,7 @@ const App = () => {
               width: "100%",
             }}
           >
-            {/* Hiển thị ảnh */}
+            
             <img
               src={movie.images && movie.images.length > 0 ? movie.images[0] : "https://via.placeholder.com/50x70"}
               alt={movie.name}
