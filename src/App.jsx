@@ -25,6 +25,9 @@ import TutorList from "./routes/Teachers/TutorList";
 import ProgramRegistration from "./routes/ProgramRegistration";
 import Session from "./routes/Session";
 import TestScheduleSession from "./routes/Session";
+import PendingSessions from "./routes/Pending";
+import VerifyEmail from "./routes/VerifyEmail";
+import ResendVerification from "./routes/ResendVerification";
 
 function App() {
   return (
@@ -35,7 +38,8 @@ function App() {
             {/* Public Routes */}
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
-
+            <Route path="/verify-email" element={<VerifyEmail />} />
+            <Route path="/resend-verification" element={<ResendVerification />} />
             {/* Protected Routes */}
             <Route
               path="/*"
@@ -51,6 +55,8 @@ function App() {
                       <Route path="/teachers" element={<TutorList />} />
                       <Route path="/registration" element={<ProgramRegistration />} />
                       <Route path="/teachers/add" element={<AddTeacher />} />
+                      <Route path="/pending" element={<PendingSessions />} />
+
                       <Route path="/teachers/:id" element={<TeacherDetails />} />
                       <Route path="/events" element={<Events />} />
                       <Route path="/finance" element={<Finance />} />

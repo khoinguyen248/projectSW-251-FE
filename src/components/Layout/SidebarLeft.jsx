@@ -9,7 +9,7 @@ const menuItems = [
   { label: "Food",      icon: "🍔",   nav: "/dashboard" },
   { label: "User",      icon: "👤",   nav: "/profile-setup" },
   { label: "Chat",      icon: "💬",   nav: "/dashboard" },
-  { label: "Latest Activity", icon: "🕒", nav: "/dashboard" },
+  { label: "PendingList", icon: "🕒", nav: "/pending" },
 ];
 
 export default function SidebarLeft() {

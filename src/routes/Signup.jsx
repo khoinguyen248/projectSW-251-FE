@@ -31,16 +31,20 @@ export default function Signup() {
     setErr(""); 
     setOk("");
     
-    try {
-      await register(form);
-      setOk("Account created!");
-      // Đợi một chút để hiển thị thông báo thành công
-      setTimeout(() => {
-        navigate(from?.pathname || "/", { replace: true });
-      }, 1000);
-    } catch (e) {
-      setErr(e.message || "Signup failed");
-    } finally {
+  try {
+  await register(form);
+  setOk("Tạo tài khoản thành công! Vui lòng kiểm tra email để xác thực.");
+  
+  // Redirect đến resend-verification sau 3 giây
+  setTimeout(() => {
+    navigate('/resend-verification', { 
+      state: { email: form.email },
+      replace: true 
+    });
+  }, 3000);
+} catch (e) {
+  setErr(e.message || "Signup failed");
+} finally {
       setLoading(false);
     }
   };

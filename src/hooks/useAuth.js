@@ -6,15 +6,12 @@ const API = axios.create({
   headers: { "Content-Type": "application/json" },
 });
 
-// ===== Module state =====
 let accessToken = null;
 let csrfToken = null;
 let refreshPromise = null;
 
-// ===== Helpers =====
 function setAccessToken(token) {
   accessToken = token;
-  // Cập nhật header mặc định cho các request không phải auth
   if (token) {
     API.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   } else {
@@ -34,7 +31,6 @@ function isAuthPath(url) {
 const needsCsrf = (method) => 
   ["post", "put", "patch", "delete"].includes((method || "").toLowerCase());
 
-// Lấy CSRF token
 async function ensureCsrf(force = false) {
   if (csrfToken && !force) return csrfToken;
   try {
@@ -47,7 +43,6 @@ async function ensureCsrf(force = false) {
   }
 }
 
-// POST tới auth endpoints với CSRF handling
 async function authPost(url, payload = {}) {
   try {
     await ensureCsrf();
@@ -218,12 +213,12 @@ export async function addFeedback(payload) {
 
 // ===== Tutor API Functions =====
 export async function getPendingSessions() {
-  const { data } = await API.get("/api/tutor/sessions/pending");  // THÊM /api/tutor
+  const { data } = await API.get("/api/sessions/pending");  // THÊM /api/tutor
   return data.sessions;
 }
 
 export async function confirmSession(sessionId, payload) {
-  const { data } = await API.patch(`/api/tutor/sessions/${sessionId}/confirm`, payload);
+  const { data } = await API.patch(`/api/sessions/${sessionId}/confirm`, payload);
   return data;
 }
 export default API;

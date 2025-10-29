@@ -13,6 +13,7 @@ export default function TutorList() {
     try {
       const tutorsData = await getTutors();
       setTutors(tutorsData);
+      console.log(tutorsData)
     } catch (error) {
       console.error("Failed to load tutors:", error);
     } finally {
@@ -35,12 +36,15 @@ export default function TutorList() {
                 Subjects: {tutor.subjectSpecialty?.join(", ")}
               </span>
             </div>
-            <div className="mt-2">
+            <div className="mt-2 flex flex-col">
               <span className="text-yellow-500">
                 ⭐ {tutor.ratingAvg || "No ratings yet"}
               </span>
               <span className="ml-4 text-green-600">
-                ${tutor.hourlyRate}/hour
+                $ {tutor?.hourlyRate}/hour
+              </span>
+               <span className="ml-4 text-green-600">
+                ID: {tutor._id}
               </span>
             </div>
           </div>
