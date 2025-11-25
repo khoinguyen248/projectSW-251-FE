@@ -202,12 +202,12 @@ export async function scheduleSession(payload) {
 }
 
 export async function joinSession(sessionId) {
-  const { data } = await API.get(`/api/student/sessions/${sessionId}/join`);
+  const { data } = await API.get(`/api/sessions/${sessionId}/join`);
   return data;
 }
 
 export async function addFeedback(payload) {
-  const { data } = await API.post("/api/student/feedback", payload);
+  const { data } = await API.post("/api/feedback", payload);
   return data;
 }
 
@@ -220,5 +220,19 @@ export async function getPendingSessions() {
 export async function confirmSession(sessionId, payload) {
   const { data } = await API.patch(`/api/sessions/${sessionId}/confirm`, payload);
   return data;
+}
+// Update src/hooks/useAuth.js - Add new functions
+export async function getSmartRecommendations(queryParams = '') {
+  const { data } = await API.get(`/api/matching/recommendations?${queryParams}`);
+  return data;
+}
+
+export async function getMatchDetails(tutorId) {
+  const { data } = await API.get(`/api/matching/match-details/${tutorId}`);
+  return data;
+}
+export async function getStudentSessions(status = "upcoming") {
+  const { data } = await API.get(`/api/sessions?status=${status}`);
+  return data.sessions;
 }
 export default API;

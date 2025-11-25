@@ -4,12 +4,14 @@ const menuItems = [
   { label: "Dashboard", icon: "🏠", nav: "/" },
   { label: "Students",  icon: "👨‍🎓", nav: "/students" },
   { label: "Teachers",  icon: "👩‍🏫", nav: "/teachers" },
+   { label: "Smart Matching", icon: "🎯", nav: "/smart-tutors" },
   { label: "Enrollsubject",     icon: "📅",   nav: "/registration" },
   { label: "Session",   icon: "💰",   nav: "/session" },
   { label: "Food",      icon: "🍔",   nav: "/dashboard" },
   { label: "User",      icon: "👤",   nav: "/profile-setup" },
   { label: "Chat",      icon: "💬",   nav: "/dashboard" },
   { label: "PendingList", icon: "🕒", nav: "/pending" },
+  { label: "Student Dashboard", icon: "📚", nav: "/student-dashboard" }
 ];
 
 export default function SidebarLeft() {

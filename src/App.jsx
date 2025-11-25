@@ -13,7 +13,6 @@ import TeacherDetails from "./routes/Teachers/TeacherDetails";
 import Events from "./routes/Events";
 import Finance from "./routes/Finance";
 import Food from "./routes/Food";
-import UserDashboard from "./routes/UserDashboard";
 import Chat from "./routes/Chat";
 import Notifications from "./routes/Notifications";
 import ProfileSetup from "./routes/ProfileSetup"; // NEW
@@ -28,6 +27,8 @@ import TestScheduleSession from "./routes/Session";
 import PendingSessions from "./routes/Pending";
 import VerifyEmail from "./routes/VerifyEmail";
 import ResendVerification from "./routes/ResendVerification";
+import SmartTutorList from "./routes/Teachers/SmartTutorList";
+import StudentDashboard from "./routes/StudentDashboard";
 
 function App() {
   return (
@@ -56,12 +57,12 @@ function App() {
                       <Route path="/registration" element={<ProgramRegistration />} />
                       <Route path="/teachers/add" element={<AddTeacher />} />
                       <Route path="/pending" element={<PendingSessions />} />
-
+                      <Route path="/smart-tutors" element={<SmartTutorList />} />
                       <Route path="/teachers/:id" element={<TeacherDetails />} />
                       <Route path="/events" element={<Events />} />
                       <Route path="/finance" element={<Finance />} />
                       <Route path="/food" element={<Food />} />
-                      <Route path="/user" element={<UserDashboard />} />
+                      <Route path="/student-dashboard" element={<StudentDashboard />} />
                       <Route path="/session" element={<TestScheduleSession />} />
 
                       <Route path="/chat" element={<Chat />} />
