@@ -158,11 +158,6 @@ export default function TestScheduleSession() {
         </div>
       )}
 
-      {/* Debug info */}
-      <div className="mt-4 p-3 bg-gray-100 rounded text-xs">
-        <strong>Debug Info:</strong>
-        <pre>{JSON.stringify(form, null, 2)}</pre>
-      </div>
     </div>
   );
 }
