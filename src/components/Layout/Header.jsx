@@ -9,8 +9,8 @@ const Header = () => {
   const { profile } = useProfile();
 
   const path = location.pathname;
-  const lastSegment = path === "/" 
-    ? "Dashboard" 
+  const lastSegment = path === "/"
+    ? "Dashboard"
     : path.split("/").filter(Boolean).pop();
 
   const handleLogout = async () => {
@@ -29,13 +29,16 @@ const Header = () => {
 
       {/* Right section */}
       <div className="flex items-center gap-4">
-        <button className="relative">
+        <button
+          className="relative"
+          onClick={() => navigate("/notifications")}
+        >
           🔔
           <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs px-1 rounded-full">
             3
           </span>
         </button>
-        
+
         <div className="flex items-center gap-2">
           <img
             src="https://i.pravatar.cc/40"
