@@ -41,7 +41,7 @@ export default function ProfileSetup() {
   const [activeSection, setActiveSection] = useState("basic");
 
   // Redirect if profile is already complete
-  
+
 
   // Load existing profile data
   useEffect(() => {
@@ -94,17 +94,17 @@ export default function ProfileSetup() {
   // Available options for forms
   const subjects = ["Mathematics", "Physics", "Chemistry", "English", "Programming", "Biology", "History", "Geography"];
   const timeSlots = [
-    'mon_14-16', 'mon_18-20', 
+    'mon_14-16', 'mon_18-20',
     'tue_14-16', 'tue_18-20',
     'wed_14-16', 'wed_18-20',
-    'thu_14-16', 'thu_18-20', 
+    'thu_14-16', 'thu_18-20',
     'fri_14-16', 'fri_18-20',
     'sat_09-11', 'sat_14-16',
     'sun_09-11', 'sun_14-16'
   ];
 
   const toggleArrayItem = (array, item) => {
-    return array.includes(item) 
+    return array.includes(item)
       ? array.filter(i => i !== item)
       : [...array, item];
   };
@@ -113,7 +113,7 @@ export default function ProfileSetup() {
     <div className="max-w-4xl mx-auto p-6">
       <h1 className="text-2xl font-bold mb-2">Complete Your Profile</h1>
       <p className="text-gray-600 mb-6">Help us find the perfect matches for you! 🎯</p>
-      
+
       {error && (
         <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
           {error}
@@ -123,32 +123,29 @@ export default function ProfileSetup() {
       {/* Progress Navigation */}
       <div className="flex mb-6 border-b">
         <button
-          className={`px-4 py-2 font-medium ${
-            activeSection === "basic" 
-              ? "border-b-2 border-blue-500 text-blue-600" 
+          className={`px-4 py-2 font-medium ${activeSection === "basic"
+              ? "border-b-2 border-blue-500 text-blue-600"
               : "text-gray-500"
-          }`}
+            }`}
           onClick={() => setActiveSection("basic")}
         >
           📝 Basic Info
         </button>
         <button
-          className={`px-4 py-2 font-medium ${
-            activeSection === "preferences" 
-              ? "border-b-2 border-blue-500 text-blue-600" 
+          className={`px-4 py-2 font-medium ${activeSection === "preferences"
+              ? "border-b-2 border-blue-500 text-blue-600"
               : "text-gray-500"
-          }`}
+            }`}
           onClick={() => setActiveSection("preferences")}
         >
           🎯 Preferences
         </button>
         {isTutor && (
           <button
-            className={`px-4 py-2 font-medium ${
-              activeSection === "expertise" 
-                ? "border-b-2 border-blue-500 text-blue-600" 
+            className={`px-4 py-2 font-medium ${activeSection === "expertise"
+                ? "border-b-2 border-blue-500 text-blue-600"
                 : "text-gray-500"
-            }`}
+              }`}
             onClick={() => setActiveSection("expertise")}
           >
             🎓 Expertise
@@ -197,11 +194,10 @@ export default function ProfileSetup() {
                             ...prev,
                             subjectSpecialty: toggleArrayItem(prev.subjectSpecialty, subject)
                           }))}
-                          className={`px-3 py-1 rounded-full text-sm ${
-                            form.subjectSpecialty.includes(subject)
+                          className={`px-3 py-1 rounded-full text-sm ${form.subjectSpecialty.includes(subject)
                               ? "bg-blue-500 text-white"
                               : "bg-gray-200 text-gray-700"
-                          }`}
+                            }`}
                         >
                           {subject}
                         </button>
@@ -210,15 +206,15 @@ export default function ProfileSetup() {
                     <input
                       type="text"
                       value={form.subjectSpecialty.join(", ")}
-                      onChange={(e) => setForm(prev => ({ 
-                        ...prev, 
+                      onChange={(e) => setForm(prev => ({
+                        ...prev,
                         subjectSpecialty: e.target.value.split(",").map(s => s.trim()).filter(Boolean)
                       }))}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                       placeholder="Or type subjects separated by commas"
                     />
                   </div>
-                  
+
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Experience (years) *
@@ -299,7 +295,7 @@ export default function ProfileSetup() {
                       placeholder="Grade 10"
                     />
                   </div>
-                  
+
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       School Name *
@@ -338,7 +334,7 @@ export default function ProfileSetup() {
             {isStudent && (
               <div className="bg-white p-6 rounded-lg shadow">
                 <h2 className="text-lg font-semibold mb-4">🎯 Learning Preferences</h2>
-                
+
                 <div className="mb-6">
                   <label className="block text-sm font-medium text-gray-700 mb-3">
                     What subjects are you interested in? *
@@ -352,11 +348,10 @@ export default function ProfileSetup() {
                           ...prev,
                           learningGoals: toggleArrayItem(prev.learningGoals, subject)
                         }))}
-                        className={`px-3 py-2 rounded-lg text-sm border ${
-                          form.learningGoals.includes(subject)
+                        className={`px-3 py-2 rounded-lg text-sm border ${form.learningGoals.includes(subject)
                             ? "bg-blue-500 text-white border-blue-500"
                             : "bg-white text-gray-700 border-gray-300"
-                        }`}
+                          }`}
                       >
                         {subject}
                       </button>
@@ -426,7 +421,7 @@ export default function ProfileSetup() {
             {isTutor && (
               <div className="bg-white p-6 rounded-lg shadow">
                 <h2 className="text-lg font-semibold mb-4">🎯 Teaching Preferences</h2>
-                
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -501,7 +496,7 @@ export default function ProfileSetup() {
         {activeSection === "expertise" && isTutor && (
           <div className="bg-white p-6 rounded-lg shadow">
             <h2 className="text-lg font-semibold mb-4">🎓 Teaching Expertise</h2>
-            
+
             <div className="mb-6">
               <label className="block text-sm font-medium text-gray-700 mb-3">
                 Your Expertise Level in Each Subject *
@@ -513,7 +508,7 @@ export default function ProfileSetup() {
                     <select
                       value={form.expertiseLevel[subject] || 'intermediate'}
                       onChange={(e) => setForm(prev => ({
-                        ...prev, 
+                        ...prev,
                         expertiseLevel: {
                           ...prev.expertiseLevel,
                           [subject]: e.target.value
@@ -552,7 +547,7 @@ export default function ProfileSetup() {
                 type="text"
                 value={form.certification.join(", ")}
                 onChange={(e) => setForm(prev => ({
-                  ...prev, 
+                  ...prev,
                   certification: e.target.value.split(",").map(c => c.trim()).filter(c => c)
                 }))}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"

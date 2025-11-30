@@ -12,7 +12,6 @@ import AddTeacher from "./routes/Teachers/AddTeacher";
 import TeacherDetails from "./routes/Teachers/TeacherDetails";
 import Events from "./routes/Events";
 import Finance from "./routes/Finance";
-import Food from "./routes/Food";
 import Chat from "./routes/Chat";
 import Notifications from "./routes/Notifications";
 import ProfileSetup from "./routes/ProfileSetup"; // NEW
@@ -61,7 +60,6 @@ function App() {
                       <Route path="/teachers/:id" element={<TeacherDetails />} />
                       <Route path="/events" element={<Events />} />
                       <Route path="/finance" element={<Finance />} />
-                      <Route path="/food" element={<Food />} />
                       <Route path="/student-dashboard" element={<StudentDashboard />} />
                       <Route path="/session" element={<TestScheduleSession />} />
 

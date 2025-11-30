@@ -235,4 +235,18 @@ export async function getStudentSessions(status = "upcoming") {
   const { data } = await API.get(`/api/sessions?status=${status}`);
   return data.sessions;
 }
+export async function getNotifications() {
+  const { data } = await API.get("/api/notifications");
+  return data;
+}
+
+export async function markRead(id) {
+  const { data } = await API.patch('/api/notifications/${id}/read');
+  return data;
+}
+
+export async function markAllRead() {
+  const { data } = await API.patch("/api/notifications/read-all");
+  return data;
+}
 export default API;
