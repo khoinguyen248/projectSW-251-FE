@@ -11,7 +11,6 @@ export default function Dashboard() {
     { label: "Students", value: "932", icon: "👨‍🎓", color: "bg-primary" },
     { label: "Teachers", value: "754", icon: "👩‍🏫", color: "bg-secondary" },
     { label: "Events", value: "40", icon: "📅", color: "bg-accent" },
-    { label: "Foods", value: "32k", icon: "🍔", color: "bg-text-dark" },
   ];
 
   return (
