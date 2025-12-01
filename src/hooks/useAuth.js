@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || "http://localhost:8080",
+  baseURL: import.meta.env.VITE_API_BASE_URL || "https://project-sw-251-be.vercel.app/",
   withCredentials: true,
   headers: { "Content-Type": "application/json" },
 });
