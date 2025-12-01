@@ -74,27 +74,69 @@ export default function ProfileSetup() {
       }));
     }
   }, [profile]);
+  const buildPayloadByRole = (form, user) => {
+  if (user?.role === "STUDENT") {
+    return {
+      fullName: form.fullName,
+      grade: form.grade,
+      schoolName: form.schoolName,
+      learningGoals: form.learningGoals || [],
+      preferredSubjects: form.preferredSubjects || [],
+      studentAvailability: form.studentAvailability || [],
+      learningStyle: form.learningStyle,
+      academicLevel: form.academicLevel,
+      preferredPriceRange: form.preferredPriceRange,
+      goals: form.goals
+    };
+  }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError("");
+  if (user?.role === "TUTOR") {
+    return {
+      fullName: form.fullName,
+      subjectSpecialty: form.subjectSpecialty || [],
+      experienceYears: Number(form.experienceYears) || 0,
+      bio: form.bio,
+      hourlyRate: Number(form.hourlyRate) || 0,
+      availability: form.availability || [],
+      teachingStyle: form.teachingStyle,
+      expertiseLevel: form.expertiseLevel || {},
+      studentLevelPreference: form.studentLevelPreference || [],
+      maxStudents: form.maxStudents || 5,
+      certification: form.certification || [],
+      educationBackground: form.educationBackground
+    };
+  }
 
-    if (fullNameError) {
-      setError("Vui lòng sửa lỗi trong tên đầy đủ trước khi gửi.");
-      setLoading(false);
-      return;
-    }
+  return { fullName: form.fullName };
+};
 
-    try {
-      await updateProfile(form);
-      navigate("/", { replace: true });
-    } catch (err) {
-      setError(err.message || "Failed to update profile");
-    } finally {
-      setLoading(false);
-    }
-  };
+
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+  setLoading(true);
+  setError("");
+
+  if (fullNameError) {
+    setError("Vui lòng sửa lỗi trong tên trước khi gửi.");
+    setLoading(false);
+    return;
+  }
+
+  try {
+    const payload = buildPayloadByRole(form, user);
+    console.log("Payload gửi lên:", payload);
+
+    await updateProfile(payload);
+
+    navigate("/", { replace: true });
+  } catch (err) {
+    console.error("Update profile error:", err);
+    setError(err.response?.data?.message || "Failed to update profile");
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   const isTutor = user?.role === "TUTOR";
   const isStudent = user?.role === "STUDENT";
