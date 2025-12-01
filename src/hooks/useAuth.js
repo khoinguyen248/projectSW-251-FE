@@ -181,6 +181,7 @@ export async function getProfile() {
 }
 
 export async function updateProfile(payload) {
+  console.log("Payload gửi lên:", payload);
   const { data } = await API.put("/api/profile", payload);
   return data;
 }
