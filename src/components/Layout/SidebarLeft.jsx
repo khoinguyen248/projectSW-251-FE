@@ -45,8 +45,8 @@ export default function SidebarLeft() {
         ))}
       </nav>
       <div className="px-8 py-6 text-xs text-gray-400">
-        <p>Akademi - School Admission Dashboard</p>
-        <p className="mt-1">Made with ❤️ by Peterdraw</p>
+        <p>Tutorspace - School Admission Dashboard</p>
+    
       </div>
     </div>
   );

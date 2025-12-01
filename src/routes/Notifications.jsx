@@ -24,6 +24,7 @@ function Notifications() {
       await markRead(notif._id);
       // Cập nhật lại UI local
       setList(list.map(n => n._id === notif._id ? { ...n, isRead: true } : n));
+      window.dispatchEvent(new Event("notificationUpdated"));
     }
     if (notif.relatedLink) {
       navigate(notif.relatedLink);
@@ -33,6 +34,7 @@ function Notifications() {
   const handleReadAll = async () => {
       await markAllRead();
       setList(list.map(n => ({...n, isRead: true})));
+      window.dispatchEvent(new Event("notificationUpdated"));
   }
 
   return (
