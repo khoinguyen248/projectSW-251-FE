@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useProfile } from "../context/ProfileContext";
+import { validateFullName } from "../utils/helpers";
 
 export default function ProfileSetup() {
   const { user } = useAuth();
@@ -39,6 +40,7 @@ export default function ProfileSetup() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [activeSection, setActiveSection] = useState("basic");
+  const [fullNameError, setFullNameError] = useState("");
 
   // Redirect if profile is already complete
 
@@ -77,6 +79,12 @@ export default function ProfileSetup() {
     e.preventDefault();
     setLoading(true);
     setError("");
+
+    if (fullNameError) {
+      setError("Vui lòng sửa lỗi trong tên đầy đủ trước khi gửi.");
+      setLoading(false);
+      return;
+    }
 
     try {
       await updateProfile(form);
@@ -168,10 +176,18 @@ export default function ProfileSetup() {
                     type="text"
                     required
                     value={form.fullName}
-                    onChange={(e) => setForm(prev => ({ ...prev, fullName: e.target.value }))}
+                    onChange={(e) => {
+                      const value = e.target.value;
+                      setForm(prev => ({ ...prev, fullName: value }));
+                      const validationError = validateFullName(value);
+                      setFullNameError(validationError);
+                    }}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="Enter your full name"
                   />
+                  {fullNameError && (
+                    <p className="text-red-500 text-sm mt-1">{fullNameError}</p>
+                  )}
                 </div>
               </div>
             </div>
@@ -587,7 +603,7 @@ export default function ProfileSetup() {
           {(activeSection === "expertise" || (activeSection === "preferences" && isStudent)) && (
             <button
               type="submit"
-              disabled={loading || !form.fullName.trim()}
+              disabled={loading || !form.fullName.trim() || fullNameError}
               className="px-6 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? "Saving..." : "Complete Profile ✅"}
