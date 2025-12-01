@@ -25,8 +25,8 @@ export default function SidebarLeft() {
   return (
     <div className="w-64 bg-primary text-white flex flex-col h-full">
       <div className="h-20 flex items-center px-8 text-2xl font-bold gap-3">
-        <span className="bg-orange-500 rounded-lg p-1 text-white text-sm">A</span>
-        Akademi
+       
+        Tutor Space
       </div>
       <nav className="flex-1 px-4 py-4 space-y-2">
         {filteredMenu.map((item) => (
